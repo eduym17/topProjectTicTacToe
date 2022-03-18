@@ -1,0 +1,157 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  --color-blue: #251791;
+  --color-darkgray: #111123;
+  --color-white: #FFFFFF;
+  --color-darkgrad: linear-gradient(90deg, var(--color-blue), var(--color-darkgray));
+  --color-aqua: #33FDD8;
+  --color-violet: #7A4AFF;
+  --color-purple: #45108A;
+  --color-brightgrad: linear-gradient(90deg, var(--color-aqua), var(--color-violet), var(--color-purple));
+  --color-gray100: #E7E7E9;
+  --color-gray200: #CFCFD3;
+  --color-gray300: #9F9FA7;
+  --color-gray400: #888891;
+  --color-gray500: #70707B;
+  --color-gray600: #585865;
+  --color-gray700: #40404E;
+  --color-gray800: #282838;
+}
+
+:root {
+  --cell-size: 100px;
+  --mark-size: calc(var(--cell-size) * .9);
+}
+
+body {
+  background: var(--color-darkgray);
+  color: var(--color-white);
+  font-family: 'Poppins', sans-serif;
+}
+
+.board {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: repeat(3, auto);
+  gap: 3px;
+}
+
+.cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background: var(--color-blue);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.cell.x,
+.cell.o {
+  cursor: not-allowed;
+}
+
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.o .cell:not(.x):not(.o):hover::before {
+  background: var(--color-aqua);
+  opacity: .15;
+}
+
+.board.x .cell:not(.x):not(.o):hover::after {
+  background: var(--color-aqua);
+  opacity: 0.15;
+}
+.board.o .cell:not(.x):not(.o):hover::after {
+  background: var(--color-aqua);
+  opacity: 1;
+}
+
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after {
+  content: '';
+  position: absolute;
+  width: calc(var(--mark-size) * .15);
+  height: var(--mark-size);
+  border-radius: 25px;
+  background-color: var(--color-aqua);
+}
+
+.cell.x::before,
+.board.x .cell:not(.x):not(.o):hover::before {
+  transform: rotate(45deg);
+}
+
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::after {
+  transform: rotate(-45deg);
+}
+
+.cell.o::before,
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::before,
+.board.o .cell:not(.x):not(.o):hover::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+}
+
+.cell.o::before,
+.board.o .cell:not(.x):not(.o):hover::before {
+  width: calc(var(--mark-size) * 0.85);
+  height: calc(var(--mark-size) * 0.85);
+  background-color: var(--color-aqua);
+}
+
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::after {
+  width: calc(var(--mark-size) * 0.6);
+  height: calc(var(--mark-size) * 0.6);
+  background-color: var(--color-blue);  
+}
+
+.result-msg {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+  color: var(--color-white);
+}
+
+.result-msg.show {
+  display: flex;
+}
+
+.result-msg button {
+  background: var(--color-aqua);
+  font-size: 25px;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+}
+
+.result-msg button:hover {
+  background: var(--color-brightgrad);
+  color: var(--color-white);
+  font-weight: 600;
+}
