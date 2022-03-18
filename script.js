@@ -5,6 +5,7 @@ const board = document.getElementById('board');
 const resultMsgElement = document.getElementById('result-msg');
 const restartButton = document.getElementById('restartbtn');
 const winningMsgTxtElement = document.querySelector('[data-winning-message-text]');
+const displayName = document.querySelector('.displayName');
 
 const winningCombinations = [
   [0, 1, 2],
@@ -26,7 +27,10 @@ startGame();
 restartButton.addEventListener('click', startGame);
 
 function startGame() {
+  
   circleTurn = false;
+
+  displayName.innerText = `X's turn:`;
 
   cellElements.forEach(cell => {
     cell.classList.remove(oClass);
@@ -42,8 +46,9 @@ function startGame() {
 function handleClick(event) {
   const cell = event.target
   const currentClass = circleTurn ? oClass : xClass;
-  placeMark(cell, currentClass);
 
+  placeMark(cell, currentClass);
+  
   if (checkWin(currentClass)) {
     endGame(false)
   } else if (isDraw()){
@@ -51,6 +56,14 @@ function handleClick(event) {
   } else {
     switchTurn();
     showClassHover();
+  }
+
+  if (circleTurn === false) {
+    displayName.innerText = `X's turn:`;
+  }
+  
+  if (circleTurn === true) {
+    displayName.innerText = `O's turn:`;
   }
 }
 
