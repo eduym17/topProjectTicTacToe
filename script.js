@@ -23,20 +23,17 @@ const winningCombinations = [
 const cellElements = document.querySelectorAll('[data-cell]');
 
 startGame();
-
 restartButton.addEventListener('click', startGame);
 
 function startGame() {
-  
   circleTurn = false;
-
   displayName.innerText = `X's turn:`;
 
   cellElements.forEach(cell => {
     cell.classList.remove(oClass);
     cell.classList.remove(xClass);
     cell.removeEventListener('click', handleClick);
-    cell.addEventListener('click', handleClick, { once: true});
+    cell.addEventListener('click', handleClick, { once: true });
   });
 
   showClassHover();
@@ -44,7 +41,7 @@ function startGame() {
 };
 
 function handleClick(event) {
-  const cell = event.target
+  const cell = event.target;
   const currentClass = circleTurn ? oClass : xClass;
 
   placeMark(cell, currentClass);
@@ -56,59 +53,42 @@ function handleClick(event) {
   } else {
     switchTurn();
     showClassHover();
-  }
+  };
 
-  if (circleTurn === false) {
-    displayName.innerText = `X's turn:`;
-  }
-  
-  if (circleTurn === true) {
-    displayName.innerText = `O's turn:`;
-  }
-}
+  circleTurn === false ? displayName.innerText = `X's turn:` : displayName.innerText = `O's turn:`;
+};
 
 function isDraw() {
   return [...cellElements].every(cell => {
     return cell.classList.contains(oClass) || cell.classList.contains(xClass)
-  })
-}
+  });
+};
 
 function endGame(draw) {
-  if(draw) {
-    winningMsgTxtElement.innerText = 'Draw!';
-  }
+  draw ? winningMsgTxtElement.innerText = 'Draw!' : winningMsgTxtElement.innerText = `${circleTurn ? "O's" : "X's"} wins!`;
 
-  if(!draw) {
-    winningMsgTxtElement.innerText = `${circleTurn ? "O's" : "X's"} wins!`
-  }
-  resultMsgElement.classList.add('show')
-}
+  resultMsgElement.classList.add('show');
+};
 
 function placeMark(cell, currentClass) {
-  cell.classList.add(currentClass)
-}
+  cell.classList.add(currentClass);
+};
 
 function switchTurn() {
   circleTurn = !circleTurn;
-}
+};
 
 function showClassHover() {
   board.classList.remove(xClass);
   board.classList.remove(oClass);
 
-  if (circleTurn) {
-    board.classList.add(oClass);
-  }
-
-  if (!circleTurn) {
-    board.classList.add(xClass);
-  }
+  circleTurn ? board.classList.add(oClass) : board.classList.add(xClass);
 };
 
 function checkWin(currentClass) {
   return winningCombinations.some(combination => {
     return combination.every(index => {
       return cellElements[index].classList.contains(currentClass);
-    })
-  })
-}
+    });
+  });
+};
