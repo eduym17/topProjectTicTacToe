@@ -1,4 +1,7 @@
 ![](https://img.shields.io/badge/TheOdinProject-yellow)
+<img width="1247" alt="image" src="https://github.com/eduym17/eyReadmeTemplate/assets/96452418/79fae5bf-1ded-4fce-99bd-6579d586ed42">
+<br/>
+<br/>
 
 # Project Name
 
