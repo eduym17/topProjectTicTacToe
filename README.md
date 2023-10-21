@@ -20,7 +20,6 @@
 👤 **Eduardo Yañez**
 
 - GitHub: [@eduym17](https://github.com/eduym17)
-- Twitter: [@Edu_YM](https://twitter.com/Edu_YM)
 - LinkedIn: [Eduardo Yañez](https://www.linkedin.com/in/eduardoym/)
 
 ## 🤝 Contributing
